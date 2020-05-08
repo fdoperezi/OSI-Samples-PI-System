@@ -20,12 +20,10 @@ namespace PIUploadUtility
         static string GetWebIDByPath(string path, string resource)
         {
             string query = resource + "?path=" + path;
-            Console.WriteLine("Get WEb ID Query:" + query);
 
             try
             {
                 JObject response = client.GetRequest(query);
-                Console.WriteLine("Get Web ID Response" + response.ToString());
                 return response["WebId"].ToString();
             }
             catch (Exception e)
@@ -42,8 +40,6 @@ namespace PIUploadUtility
             string assetserverWebID = GetWebIDByPath(serverPath, "assetservers");
 
             string createDBQuery = "assetservers/" + assetserverWebID + "/assetdatabases";
-
-            Console.WriteLine("Create Database Query" + createDBQuery);
 
             string databaseName = config["AF_DATABASE_NAME"].ToString();
 
@@ -228,9 +224,6 @@ namespace PIUploadUtility
 
             string dataserver = config["PI_SERVER_NAME"].ToString();
             string assetserver = config["AF_SERVER_NAME"].ToString();
-
-            Console.WriteLine(dataserver);
-            Console.WriteLine(assetserver);
 
             //Create and Import Database from Building Example file
             XmlDocument doc = new XmlDocument();
