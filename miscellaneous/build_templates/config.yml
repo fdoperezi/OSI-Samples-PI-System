@@ -27,6 +27,6 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)${{ parameters.filePath }}/
     displayName: 'Delete original config file'
 
-  - bash: mv ${{ parameters.fileLibrary }}" "${{ parameters.fileOriginal }}
+  - bash: mv ${{ parameters.fileLibrary }} ${{ parameters.fileOriginal }}
     workingDirectory: $(Build.SourcesDirectory)${{ parameters.filePath }}/
     displayName: 'Rename library config file'
