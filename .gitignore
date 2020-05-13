@@ -223,6 +223,9 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
+#Ipython checkpoints
+/piwebapi_samples/Data_Analysis/.ipynb_checkpoints
+
 ##############
 ## JavaScript
 # Logs

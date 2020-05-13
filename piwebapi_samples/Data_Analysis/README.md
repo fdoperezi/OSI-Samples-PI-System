@@ -1,4 +1,9 @@
+
 # PI Web API Data Analysis Sample
+
+**Version:** 1.0.0 
+[![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/PI-System/PIWebAPI_Python?branchName=master)](https://dev.azure.com/osieng/engineering/_build?definitionId=1644&branchName=master)
+
 The sample code in this folder demonstrates how to utilize the PI Web API to do some basic data analysis using Python Jupyter Notebook. In order to run this sample, you need to have [Python](https://www.python.org/downloads/release/python-373/) installed.
 
 ## Background and Problem
@@ -10,9 +15,9 @@ The problem here is that these control systems are not identical. They all have 
 ### Problem Statement
 Our objective here is to predict the total time taken by each of the unit in the building to reach the setpoint so that building management systems can turn on the units as close as possible to 7 AM.
 
-In our earlier example, if we had predicted earlier (to some degree of accuracy) that the unit A takes an hour to reach the set point, we would have turned it on by 6 AM instead of 5 AM which would have resulted us in saving that extra hour of wasted energy.
+In our earlier example, if we had predicted earlier (to some degree of accuracy) that the Unit A takes an hour to reach the set point, we would have turned it on by 6 AM instead of 5 AM which would have resulted us in saving that extra hour of wasted energy.
 
-We will be utilizing the data that we have and do some basic data analysis and predictive machine learning using jupyter notebook in order to predict the cooling time for different units.
+We will be utilizing the data that we have and do some basic data analysis and predictive machine learning using Jupyter Notebook in order to predict the cooling time for different units.
 
 ### Data Overview
 In this sample, we are denoting these control systems as two different `VAVCO` units which are represented as AF Elements. Each of these elements have different attributes which mimic an actual cooling unit such as `% cooling` and `Set Point Offset`.
@@ -23,10 +28,11 @@ All this data is available as part of `Building Data.xml`. There is a helpful ut
 
 ## Getting Started
 - Clone the GitHub repository
-- Open the Data Analysis folder with your IDE
-- Install the required modules by running the following command in the terminal : `pip install -r requirements.txt
-### Setting up database and PI Archive
-- In the Data Analysis folder, populate the values of `test_config.json` with your own system configuration. 
+- Open the `Data_Analysis` folder with your IDE (eg. Visual Studio Code)
+- Install the required modules by running the following command in the terminal : `pip install -r requirements.txt`
+
+### Setting up the AF database and the PI Data Archive
+- In the `Data_Analysis` folder, populate the values of `test_config.json` with your own system configuration. 
 For example:
 ```
 	"PIWEBAPI_URL": "https://mydomain.com/piwebapi/",
@@ -37,9 +43,10 @@ For example:
 	"USER_PASSWORD": "MyUserPassword",
 	"AUTH_TYPE": "basic" # Basic or Kerberos 
 ```
-
-- Run `PIUploadUtility.sln` which imports the database from `Building Example.xml`, creates PI tags outlined in `tagdefinition.csv` and uploads the values in `pidata.csv` to PI Data Archive.
-- You can open up PI System Explorer and check out the database you just created to further understand the data and the hierarchy.
+- `Building Example.xml` assumes that the PI Server is on the same system. Edit the `Building Example.xml` to replace all occurences of `localhost`to your PI Server.
+- Run `PIUploadUtility.sln` which imports the AF database from `Building Example.xml`, creates PI tags outlined in `tagdefinition.csv` and uploads the values in `pidata.csv` to PI Data Archive.
+- The 
+- You can open up PI System Explorer and check out the AF database you just created to further understand the data and the hierarchy.
 
 ### Running Jupyter Notebook
 - Open a terminal and type in `jupyter notebook`. This will open a browser window. Navigate to the cloned repository and open up `Sandbox.ipynb`. Run the cells one by one and you can see the output in browser itself.
@@ -49,5 +56,10 @@ For example:
 The documentation for the various controllers and topics can be found at your local PI Web API help system: https://your-server/piwebapi/help
 
 ##  Authentication and minimum versions
-The sample works with Basic and Kerberos authentication methods. 
+The sample works with Basic authentication. 
 This sample has been tested on `PI Web API 2018 SP1`, `PI AF Server 2018 SP2` and `PI Data Archive 2018 SP2`.
+
+---
+
+For the main PI Web API page [ReadMe](../)  
+For the main landing page on master [ReadMe](https://github.com/osisoft/OSI-Samples)

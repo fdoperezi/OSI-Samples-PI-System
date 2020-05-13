@@ -9,7 +9,7 @@ namespace PIUploadUtility
 {
     class Program
     {
-        static readonly string defaultConfigFile = @"..\..\..\..\..\test_config.json";
+        static readonly string defaultConfigFile = @"..\..\..\..\test_config.json";
         static readonly string defaultDatabaseFileFile = @"..\..\Building Example.xml";
         static readonly string defaultTagDefinitionFile = @"..\..\tagdefinition.csv";
         static readonly string defaultPIDataFile = @"..\..\pidata.csv";
@@ -110,7 +110,7 @@ namespace PIUploadUtility
             }
         }
 
-        static bool IsTagExist(string dataserver)
+        static bool DoesTagExist(string dataserver)
         {
             string tagname = "VAVCO 2-09.Predicted Cooling Time";
            
@@ -190,7 +190,9 @@ namespace PIUploadUtility
        
         static void Main(string[] args)
         {
-            //Use the default values provided above (which work when running from visual studio) or use the values provided by command line arguments
+            /*Use the default values provided at the beginning of this class (which work when running from Visual Studio) 
+                or use the values provided by command line arguments*/
+
             string configFile = defaultConfigFile;
             string databaseFile = defaultDatabaseFileFile;
             string tagDefinitionFile = defaultTagDefinitionFile;
@@ -231,7 +233,7 @@ namespace PIUploadUtility
             CreateDatabase(doc, assetserver);
 
             //Check for and create tags
-            if (!IsTagExist(dataserver))
+            if (!DoesTagExist(dataserver))
             {
                 CreatePIPoint(dataserver, tagDefinitionFile);
             }

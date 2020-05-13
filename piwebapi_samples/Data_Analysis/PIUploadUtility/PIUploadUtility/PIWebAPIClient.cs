@@ -37,8 +37,10 @@ namespace PIUploadUtility
         public async Task<JObject> GetAsync(string uri)
         {
             HttpResponseMessage response = await client.GetAsync(uri);
-            Console.WriteLine("GET response status code" + response.StatusCode);
+
+            Console.WriteLine("GET response code ", response.StatusCode);
             string content = await response.Content.ReadAsStringAsync();
+
             if(!response.IsSuccessStatusCode)
             {
                 var responseMessage = "Response status code does not indicate success: " + (int)response.StatusCode + " (" + response.StatusCode + " ). ";
@@ -52,10 +54,9 @@ namespace PIUploadUtility
             HttpResponseMessage response = await client.PostAsync(
                 uri, new StringContent(data, Encoding.UTF8, "application/json"));
 
-
-            Console.WriteLine("POST response status code" + response.StatusCode);
-
+            Console.WriteLine("POST response code ", response.StatusCode);
             string content = await response.Content.ReadAsStringAsync();
+
             if (!response.IsSuccessStatusCode)
             {
                 var responseMessage = "Response status code does not indicate success: " + (int)response.StatusCode + " (" + response.StatusCode + " ). ";
@@ -68,13 +69,16 @@ namespace PIUploadUtility
             HttpResponseMessage response = await client.PostAsync(
                 uri, new StringContent(data, Encoding.UTF8, "text/xml"));
 
+            Console.WriteLine("GET response code ", response.StatusCode);
             string content = await response.Content.ReadAsStringAsync();
+
             if (!response.IsSuccessStatusCode)
             {
                 var responseMessage = "Response status code does not indicate success: " + (int)response.StatusCode + " (" + response.StatusCode + " ). ";
                 throw new HttpRequestException(responseMessage + Environment.NewLine + content);
             }
         }
+
         public JObject GetRequest(string url)
         {
             Task<JObject> t = this.GetAsync(url);
@@ -95,6 +99,7 @@ namespace PIUploadUtility
                 t.Wait();
             }
         }
+
         public void Dispose()
         {
             client.Dispose();
