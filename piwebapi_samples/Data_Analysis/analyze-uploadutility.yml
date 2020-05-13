@@ -1,0 +1,42 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - '/piwebapi_samples/Data_Analysis'
+
+pr:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - '/piwebapi_samples/Data_Analysis'
+
+schedules:
+  - cron: '0 0 * * 0'
+    displayName: Weekly build
+    branches:
+      include:
+        - master
+    always: true
+
+variables:
+  - template: '/miscellaneous/build_templates/variables.yml'
+  - name: projPath
+    value: '/piwebapi_samples/Data_Analysis/PIUploadUtility'
+  - name: CredFile
+    value: test_config.json
+  - name: CredFileLibrary
+    value: product-readiness.piweb_da.json
+  - name: covStream
+    value: UploadUtility_DotNet
+  - name: bdProject
+    value: UploadUtility_DotNet
+
+jobs:
+  - template: '/miscellaneous/build_templates/analysis.yml'
+    parameters:
+      language: dotnet
