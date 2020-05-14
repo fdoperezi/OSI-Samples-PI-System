@@ -32,9 +32,9 @@ variables:
   - name: CredFileLibrary
     value: product-readiness.piweb_da.json
   - name: covStream
-    value: UploadUtility_DotNet
+    value: PIWebAPI_Data_Analysis_Upload
   - name: bdProject
-    value: UploadUtility_DotNet
+    value: PIWebAPI_Data_Analysis_Upload
 
 jobs:
   - template: '/miscellaneous/build_templates/analysis.yml'

@@ -32,9 +32,9 @@ variables:
   - name: CredFileLibrary
     value: product-readiness.piweb_da.json
   - name: covStream
-    value: PIWebAPIPython
+    value: PIWebAPI_Data_Analysis
   - name: bdProject
-    value: PIWebAPI_Python
+    value: PIWebAPI_Data_Analysis
 
 jobs:
   - job: BuildUploadUtility
